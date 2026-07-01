@@ -24,7 +24,7 @@ jobs:
         uses: google-github-actions/setup-gcloud@v1
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
-          
+
       - name: Debug DAG paths
         run: |
           pwd
@@ -33,14 +33,15 @@ jobs:
 
       - name: Upload Airflow DAG (serial)
         run: |
-          gcloud composer environments storage dags import \
+            gcloud composer environments storage dags import \
             --environment airflow-prod \
             --location asia-east1 \
             --source dags/airflow_dag_for_serial_task.py
 
-      - name: Upload Airflow DAG (parallel)
+
+      - name: Upload Airflow DAG (serial)
         run: |
-          gcloud composer environments storage dags import \
-            --environment airflow-prod \
-            --location asia-east1 \
-            --source dags/airflow_dag_for_parallel_tasks.py
+            gcloud composer environments storage dags import \
+              --environment airflow-prod \
+              --location asia-east1 \
+              --source dags/airflow_dag_for_serial_task.py
