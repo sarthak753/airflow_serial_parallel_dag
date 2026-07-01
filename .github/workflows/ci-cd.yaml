@@ -23,10 +23,17 @@ jobs:
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
 
-      - name: Upload Airflow DAG to PROD
+      - name: Upload Airflow DAG (serial)
         run: |
           gcloud composer environments storage dags import \
             --environment airflow-prod \
             --location asia-east1 \
             --source dags/airflow_dag_for_serial_task.py
+
+      - name: Upload Airflow DAG (parallel)
+        run: |
+          gcloud composer environments storage dags import \
+            --environment airflow-prod \
+            --location asia-east1 \
             --source dags/airflow_dag_for_parallel_tasks.py
+
