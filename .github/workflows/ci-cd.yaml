@@ -24,8 +24,12 @@ jobs:
         uses: google-github-actions/setup-gcloud@v1
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
-
-
+          
+      - name: Debug DAG paths
+        run: |
+          pwd
+          ls -R
+          ls -R dags
 
       - name: Upload Airflow DAG (serial)
         run: |
