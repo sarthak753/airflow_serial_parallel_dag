@@ -1,4 +1,13 @@
-jobs:
+name: airflow_serial_parallel_dag
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  
+  
+  jobs:
   upload-to-main:
     runs-on: ubuntu-latest
 
