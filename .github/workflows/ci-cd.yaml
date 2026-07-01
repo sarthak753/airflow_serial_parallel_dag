@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   
   
-  jobs:
+jobs:
   upload-to-main:
     runs-on: ubuntu-latest
 
