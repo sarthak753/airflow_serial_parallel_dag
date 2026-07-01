@@ -35,11 +35,11 @@ jobs:
           gcloud composer environments storage dags import \
             --environment airflow-prod \
             --location asia-east1 \
-            --source SEQ_AND_PARALLEL_AIRFLOW_DAGS/dags/airflow_dag_for_serial_task.py
+            --source dags/airflow_dag_for_serial_task.py
 
       - name: Upload Airflow DAG (parallel)
         run: |
           gcloud composer environments storage dags import \
             --environment airflow-prod \
             --location asia-east1 \
-            --source SEQ_AND_PARALLEL_AIRFLOW_DAGS/dags/airflow_dag_for_parallel_tasks.py
+            --source dags/airflow_dag_for_parallel_tasks.py
