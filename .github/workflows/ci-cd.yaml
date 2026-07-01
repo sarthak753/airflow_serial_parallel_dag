@@ -1,0 +1,32 @@
+name: airflow_serial_parallel_dag
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  upload-to-main:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Setup Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+      - name: Upload Airflow DAG to PROD
+        run: |
+          gcloud composer environments storage dags import \
+            --environment airflow-prod \
+            --location asia-east1 \
+            --source dags/airflow_dag_for_serial_task.py
+            --source dags/airflow_dag_for_parallel_tasks.py
