@@ -25,10 +25,7 @@ jobs:
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
 
-      - name: Debug DAG paths
-        run: |
-          pwd
-          ls -R SEQ_AND_PARALLEL_AIRFLOW_DAGS/dags
+
 
       - name: Upload Airflow DAG (serial)
         run: |
